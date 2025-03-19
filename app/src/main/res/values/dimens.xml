@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="appbar_height">56dp</dimen>
+    <dimen name="large_text_size">22sp</dimen>
+    <dimen name="medium_text_size">19sp</dimen>
+    <dimen name="small_text_size">16sp</dimen>
+    <dimen name="medium_padding">16dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="small_margin_minus">-8dp</dimen>
+    <dimen name="zero_height">0dp</dimen>
+    <dimen name="one_weight">1</dimen>
+    <dimen name="option_height">61dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="icon_margin">12dp</dimen>
+    <dimen name="medium_radius">16dp</dimen>
+</resources>
