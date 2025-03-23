@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarTitleStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_size_22sp</item>
+        <item name="android:textFontWeight">500</item>
+    </style>
+
+</resources>
