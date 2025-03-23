@@ -1,138 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:orientation="vertical">
+        android:layout_height="@dimen/height_56dp"
+        android:layout_marginBottom="@dimen/margin_24dp"
+        app:contentInsetStartWithNavigation="@dimen/height_0dp"
+        app:titleMarginStart="@dimen/margin_8dp"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/black"
+        app:title="@string/settings_name"
+        app:titleTextColor="@color/black"
+        app:titleTextAppearance="@style/ToolbarTitleStyle" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/appbar_height"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/medium_padding">
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_61dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:paddingEnd="@dimen/padding_6dp"
+        android:background="@color/white"
+        app:thumbTint="@color/switch_thumb_color"
+        app:trackTint="@color/switch_track_color"
+        android:text="@string/title_dark_theme"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_19sp"
+        android:textAllCaps="false" />
 
-            <ImageView
-                android:id="@+id/icon_back"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/large_margin"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@color/black" />
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_61dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:paddingEnd="@dimen/padding_12dp"
+        android:drawableEnd="@drawable/ic_share"
+        app:drawableTint="@color/grey"
+        android:text="@string/title_share_app"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_19sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/settings_name"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/large_text_size" />
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_61dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:paddingEnd="@dimen/padding_12dp"
+        android:drawableEnd="@drawable/ic_support"
+        app:drawableTint="@color/grey"
+        android:text="@string/title_write_to_support"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_19sp" />
 
-        </LinearLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_61dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_16dp"
+        android:paddingEnd="@dimen/padding_12dp"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        app:drawableTint="@color/grey"
+        android:text="@string/title_user_agreement"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_19sp" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/option_height"
-            android:layout_marginTop="@dimen/large_margin">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:text="@string/title_dark_theme"
-                android:textColor="@color/black"
-                android:textSize="@dimen/medium_text_size" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:height="40dp"
-                android:width="56dp"
-                android:layout_marginEnd="6dp"
-                app:thumbTint="@color/switch_thumb_color"
-                app:trackTint="@color/switch_track_color"
-                android:contentDescription="@string/title_dark_theme" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/option_height">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:text="@string/title_share_app"
-                android:textColor="@color/black"
-                android:textSize="@dimen/medium_text_size" />
-
-            <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="@dimen/icon_margin"
-                android:src="@drawable/ic_share"
-                app:tint="@color/grey" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/option_height">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:text="@string/title_write_to_support"
-                android:textColor="@color/black"
-                android:textSize="@dimen/medium_text_size" />
-
-            <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="@dimen/icon_margin"
-                android:src="@drawable/ic_support"
-                app:tint="@color/grey" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/option_height">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:text="@string/title_user_agreement"
-                android:textColor="@color/black"
-                android:textSize="@dimen/medium_text_size" />
-
-            <ImageView
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="@dimen/icon_margin"
-                android:src="@drawable/ic_arrow_forward"
-                app:tint="@color/grey" />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

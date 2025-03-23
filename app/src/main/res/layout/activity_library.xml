@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Медиатека"
-        android:textSize="@dimen/medium_text_size"
+        android:textSize="@dimen/text_size_19sp"
         android:textColor="@color/black" />
 
 </FrameLayout>

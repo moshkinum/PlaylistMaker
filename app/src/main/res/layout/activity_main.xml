@@ -5,85 +5,72 @@
     android:layout_height="match_parent"
     android:background="@color/blue"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/medium_padding">
+    android:paddingHorizontal="@dimen/padding_16dp">
 
-    <FrameLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/appbar_height">
+        android:layout_height="@dimen/height_56dp"
+        android:background="@color/blue"
+        app:title="@string/main_name"
+        app:contentInsetStart="@dimen/height_0dp"
+        app:titleTextAppearance="@style/ToolbarTitleStyle"
+        app:titleTextColor="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/main_name"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="@dimen/large_text_size" />
-
-    </FrameLayout>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginBottom="28dp">
+        android:layout_height="@dimen/height_0dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_weight="@dimen/weight_1"
+        android:foreground="?attr/selectableItemBackground"
+        android:backgroundTint="@color/white"
+        android:text="@string/search"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_22sp"
+        app:cornerRadius="@dimen/radius_16dp"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/padding_8dp"
+        app:iconTint="@color/black" />
 
-        <Button
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero_height"
-            android:layout_marginTop="@dimen/small_margin_minus"
-            android:layout_weight="@dimen/one_weight"
-            android:foreground="?attr/selectableItemBackground"
-            android:backgroundTint="@color/white"
-            android:text="@string/search"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="@dimen/large_text_size"
-            app:cornerRadius="@dimen/medium_radius"
-            app:icon="@drawable/ic_search"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/small_padding"
-            app:iconTint="@color/black" />
+    <Button
+        android:id="@+id/library"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_0dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_weight="@dimen/weight_1"
+        android:foreground="?attr/selectableItemBackground"
+        android:backgroundTint="@color/white"
+        android:text="@string/library"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_22sp"
+        app:cornerRadius="@dimen/radius_16dp"
+        app:icon="@drawable/ic_library"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/padding_8dp"
+        app:iconTint="@color/black" />
 
-        <Button
-            android:id="@+id/library"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero_height"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_weight="@dimen/one_weight"
-            android:foreground="?attr/selectableItemBackground"
-            android:backgroundTint="@color/white"
-            android:text="@string/library"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="@dimen/large_text_size"
-            app:cornerRadius="@dimen/medium_radius"
-            app:icon="@drawable/ic_library"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/small_padding"
-            app:iconTint="@color/black" />
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_0dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_20dp"
+        android:layout_weight="@dimen/weight_1"
+        android:foreground="?attr/selectableItemBackground"
+        android:backgroundTint="@color/white"
+        android:text="@string/settings"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_22sp"
+        app:cornerRadius="@dimen/radius_16dp"
+        app:icon="@drawable/ic_settings"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/padding_8dp"
+        app:iconTint="@color/black" />
 
-        <Button
-            android:id="@+id/settings"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero_height"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin_minus"
-            android:layout_weight="@dimen/one_weight"
-            android:foreground="?attr/selectableItemBackground"
-            android:backgroundTint="@color/white"
-            android:text="@string/settings"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="@dimen/large_text_size"
-            app:cornerRadius="@dimen/medium_radius"
-            app:icon="@drawable/ic_settings"
-            app:iconGravity="textStart"
-            app:iconPadding="@dimen/small_padding"
-            app:iconTint="@color/black" />
-
-    </LinearLayout>
 
 </LinearLayout>
