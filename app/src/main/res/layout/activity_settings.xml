@@ -4,70 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="?attr/colorPrimary">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_56dp"
-        android:layout_marginBottom="@dimen/margin_24dp"
-        app:contentInsetStartWithNavigation="@dimen/height_0dp"
-        app:titleMarginStart="@dimen/margin_8dp"
-        android:background="@color/white"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:navigationIconTint="@color/black"
-        app:title="@string/settings_name"
-        app:titleTextColor="@color/black"
-        app:titleTextAppearance="@style/ToolbarTitleStyle" />
+        style="@style/ToolbarStyle.WithBackArrow"
+        android:layout_marginBottom="@dimen/margin_24"
+        app:title="@string/settings" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_61dp"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/padding_16dp"
-        android:paddingEnd="@dimen/padding_6dp"
-        android:background="@color/white"
-        app:thumbTint="@color/switch_thumb_color"
-        app:trackTint="@color/switch_track_color"
-        android:text="@string/title_dark_theme"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_19sp"
-        android:textAllCaps="false" />
+        android:id="@+id/dark_theme"
+        style="@style/SettingsItemStyle.SwitchMaterial"
+        android:text="@string/dark_theme" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_61dp"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/padding_16dp"
-        android:paddingEnd="@dimen/padding_12dp"
-        android:drawableEnd="@drawable/ic_share"
-        app:drawableTint="@color/grey"
-        android:text="@string/title_share_app"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_19sp" />
+        android:id="@+id/share_app"
+        style="@style/SettingsItemStyle"
+        android:text="@string/share_app"
+        android:drawableEnd="@drawable/ic_share" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_61dp"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/padding_16dp"
-        android:paddingEnd="@dimen/padding_12dp"
-        android:drawableEnd="@drawable/ic_support"
-        app:drawableTint="@color/grey"
-        android:text="@string/title_write_to_support"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_19sp" />
+        android:id="@+id/write_to_support"
+        style="@style/SettingsItemStyle"
+        android:text="@string/write_to_support"
+        android:drawableEnd="@drawable/ic_support" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_61dp"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/padding_16dp"
-        android:paddingEnd="@dimen/padding_12dp"
-        android:drawableEnd="@drawable/ic_arrow_forward"
-        app:drawableTint="@color/grey"
-        android:text="@string/title_user_agreement"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_19sp" />
+        android:id="@+id/user_agreement"
+        style="@style/SettingsItemStyle"
+        android:text="@string/user_agreement"
+        android:drawableEnd="@drawable/ic_arrow_forward" />
 
 </LinearLayout>
