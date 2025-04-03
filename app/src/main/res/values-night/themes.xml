@@ -1,7 +1,21 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+
+    <style name="Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/grey_900</item>
+        <item name="colorPrimaryVariant">@color/grey_900</item>/>
+        <item name="colorOnPrimary">@color/white</item>/>
+
+        <item name="colorSecondary">@color/white</item>/>
+        <item name="colorSecondaryVariant">@color/grey_900</item>/>
+        <item name="colorOnSecondary">@color/white</item>/>
+
+        <item name="android:statusBarColor">@color/grey_900</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <style name="Theme.PlaylistMaker.Main">
+        <item name="android:statusBarColor">@color/grey_900</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    
 </resources>
