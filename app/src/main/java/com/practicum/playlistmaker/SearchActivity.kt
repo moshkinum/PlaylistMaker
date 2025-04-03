@@ -4,12 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.material.appbar.MaterialToolbar
 
 class SearchActivity : AppCompatActivity() {
@@ -24,13 +23,11 @@ class SearchActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(SEARCH_TEXT, searchText)
-        Log.d("SearchText", searchText)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         searchText = savedInstanceState.getString(SEARCH_TEXT, TEXT_DEF)
-        Log.d("SearchText", searchText)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
                 before: Int,
                 count: Int,
             ) {
-                iconClear.visibility = iconClearVisibility(s)
+                iconClear.isVisible = !s.isNullOrEmpty()
                 searchText = s.toString()
             }
 
@@ -80,13 +77,5 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         inputSearch.addTextChangedListener(searchWatcher)
-    }
-
-    private fun iconClearVisibility(s: CharSequence?): Int {
-        return if (s.isNullOrEmpty()) {
-            View.GONE
-        } else {
-            View.VISIBLE
-        }
     }
 }
