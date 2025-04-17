@@ -19,6 +19,10 @@
         <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 
+    <style name="YsDisplayRegular.11">
+        <item name="android:textSize">@dimen/text_size_11</item>
+    </style>
+
     <style name="ToolbarStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/height_56</item>
@@ -56,7 +60,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">@dimen/padding_16</item>
         <item name="android:paddingEnd">@dimen/padding_12</item>
-        <item name="drawableTint">@color/grey_500</item>
+        <item name="drawableTint">?attr/colorOnSecondaryFixed</item>
         <item name="android:textAppearance">@style/YsDisplayRegular.16</item>
         <item name="android:textColor">?attr/colorOnSecondary</item>
     </style>
@@ -93,6 +97,23 @@
         <item name="android:paddingVertical">@dimen/padding_10</item>
         <item name="android:paddingHorizontal">@dimen/padding_12</item>
         <item name="tint">?attr/colorSecondaryVariant</item>
+    </style>
+
+    <style name="RoundImageViewStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">2dp</item>>
+    </style>
+
+    <style name="TrackNameStyle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">@style/YsDisplayRegular.16</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+
+    <style name="ArtistNameStyle">
+        <item name="android:textAppearance">@style/YsDisplayRegular.11</item>
+        <item name="android:textColor">?attr/colorOnSecondaryFixed</item>
     </style>
 
 </resources>
