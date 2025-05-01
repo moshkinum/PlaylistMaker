@@ -7,10 +7,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         val buttonSearch = findViewById<Button>(R.id.search)
         val buttonSearchClickListener: View.OnClickListener =
             object : View.OnClickListener {

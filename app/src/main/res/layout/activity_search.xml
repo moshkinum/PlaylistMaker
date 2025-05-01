@@ -3,38 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="?attr/colorPrimary">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
         style="@style/ToolbarStyle.WithBackArrow"
+        android:id="@+id/toolbar"
         app:title="@string/search" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_36"
-        android:layout_marginTop="@dimen/margin_8"
-        android:layout_marginHorizontal="@dimen/margin_16">
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_8">
 
         <EditText
-            android:id="@+id/inputSearch"
             style="@style/EditTextSearchStyle"
-            android:hint="@string/search" />
+            android:id="@+id/inputSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:hint="@string/search"
+            android:imeOptions="actionDone"
+            android:singleLine="true" />
 
         <ImageView
-            android:id="@+id/iconClear"
             style="@style/IconClearSearchStyle"
+            android:id="@+id/iconClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:src="@drawable/ic_clear_search"
             android:visibility="gone" />
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/imageError"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="110dp"
+        tools:src="@drawable/no_connection"
+        android:visibility="gone" />
+
+    <TextView
+        style="@style/TextErrorStyle"
+        android:id="@+id/textError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_24"
+        android:layout_marginTop="@dimen/margin_16"
+        tools:text="@string/no_connection"
+        android:visibility="gone" />
+
+    <Button
+        style="@style/ButtonRefreshStyle"
+        android:layout_width="@dimen/width_91"
+        android:layout_height="@dimen/height_36"
+        android:layout_gravity="center"
+        android:id="@+id/btnRefresh"
+        android:layout_marginTop="@dimen/margin_24"
+        android:text="@string/refresh"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_24"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 </LinearLayout>

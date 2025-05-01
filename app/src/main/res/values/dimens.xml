@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="width_91">91dp</dimen>
     <dimen name="width_45">45dp</dimen>
     <dimen name="width_0">0dp</dimen>
 
@@ -28,9 +29,12 @@
     <dimen name="padding_6">6dp</dimen>
 
     <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
     <dimen name="text_size_11">11sp</dimen>
 
+    <dimen name="radius_54">54dp</dimen>
     <dimen name="radius_16">16dp</dimen>
     <dimen name="radius_8">8dp</dimen>
 
