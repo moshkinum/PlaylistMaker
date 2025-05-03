@@ -9,7 +9,9 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         style="@style/ToolbarStyle.WithBackArrow"
-        android:id="@+id/toolbar"
+        android:id="@+id/tbSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_56"
         app:title="@string/search" />
 
     <FrameLayout
@@ -20,7 +22,7 @@
 
         <EditText
             style="@style/EditTextSearchStyle"
-            android:id="@+id/inputSearch"
+            android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
@@ -30,7 +32,7 @@
 
         <ImageView
             style="@style/IconClearSearchStyle"
-            android:id="@+id/iconClear"
+            android:id="@+id/ivClearSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -40,7 +42,7 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/imageError"
+        android:id="@+id/ivError"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
@@ -50,7 +52,7 @@
 
     <TextView
         style="@style/TextErrorStyle"
-        android:id="@+id/textError"
+        android:id="@+id/tvError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_24"

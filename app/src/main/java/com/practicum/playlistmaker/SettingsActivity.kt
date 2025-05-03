@@ -12,17 +12,17 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        val shareApp = findViewById<MaterialTextView>(R.id.share_app)
-        val writeToSupport =
-            findViewById<MaterialTextView>(R.id.write_to_support)
-        val userAgreement = findViewById<MaterialTextView>(R.id.user_agreement)
+        val tbSettings = findViewById<MaterialToolbar>(R.id.tbSettings)
+        val tvShareApp = findViewById<MaterialTextView>(R.id.tvShareApp)
+        val tvWriteToSupport =
+            findViewById<MaterialTextView>(R.id.tvWriteToSupport)
+        val tvUserAgreement = findViewById<MaterialTextView>(R.id.tvUserAgreement)
 
-        toolbar.setNavigationOnClickListener {
+        tbSettings.setNavigationOnClickListener {
             finish()
         }
 
-        shareApp.setOnClickListener {
+        tvShareApp.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(
                 Intent.EXTRA_TEXT,
@@ -32,7 +32,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        writeToSupport.setOnClickListener {
+        tvWriteToSupport.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = "mailto:".toUri()
             intent.putExtra(
@@ -47,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        userAgreement.setOnClickListener {
+        tvUserAgreement.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = getString(R.string.user_agreement_url).toUri()
             startActivity(intent)

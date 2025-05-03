@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/trackImage"
+        android:id="@+id/ivTrackImage"
         android:layout_width="@dimen/width_45"
         android:layout_height="@dimen/width_45"
         android:layout_marginStart="@dimen/margin_13"
@@ -17,16 +17,16 @@
         tools:src="@drawable/placeholder" />
 
     <LinearLayout
-        android:layout_width="@dimen/width_0"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginVertical="@dimen/margin_14"
         android:layout_marginHorizontal="@dimen/margin_8"
-        android:layout_weight="@dimen/weight_1"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/trackName"
             style="@style/TrackNameStyle"
+            android:id="@+id/tvTrackName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Yesterday (Remastered 2009)" />
@@ -39,8 +39,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/artistName"
                 style="@style/ArtistNameStyle"
+                android:id="@+id/tvArtistName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="The Beatles" />
@@ -51,8 +51,8 @@
                 android:src="@drawable/ic_circle" />
 
             <TextView
-                android:id="@+id/trackTime"
                 style="@style/ArtistNameStyle"
+                android:id="@+id/tvTrackTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="2:55" />

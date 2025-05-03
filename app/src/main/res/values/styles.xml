@@ -32,25 +32,20 @@
     </style>
 
     <style name="ToolbarStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/height_56</item>
-        <item name="contentInsetStart">@dimen/height_0</item>
+        <item name="contentInsetStart">0dp</item>
         <item name="titleTextAppearance">@style/YsDisplayMedium.22</item>
         <item name="titleTextColor">@color/white</item>
     </style>
 
     <style name="ToolbarStyle.WithBackArrow">
         <item name="titleTextColor">?attr/colorOnPrimary</item>
-        <item name="contentInsetStartWithNavigation">@dimen/height_0</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="titleMarginStart">@dimen/margin_8</item>
         <item name="navigationIcon">@drawable/ic_arrow_back</item>
         <item name="navigationIconTint">?attr/colorOnPrimary</item>
     </style>
 
     <style name="ButtonMainStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/height_0</item>
-        <item name="android:layout_weight">@dimen/weight_1</item>
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:textAllCaps">false</item>
@@ -63,8 +58,6 @@
     </style>
 
     <style name="SettingsItemStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/height_61</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingStart">@dimen/padding_16</item>
         <item name="android:paddingEnd">@dimen/padding_12</item>

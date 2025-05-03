@@ -28,20 +28,19 @@ enum class ErrorType {
 
 class SearchActivity : AppCompatActivity() {
 
-    private val iTunesBaseUrl = "https://itunes.apple.com"
     private val retrofit = Retrofit.Builder()
-        .baseUrl(iTunesBaseUrl)
+        .baseUrl(ITUNES_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val iTunesService = retrofit.create(ITunesApi::class.java)
     private val tracks = mutableListOf<Track>()
 
     private lateinit var adapter: TracksAdapter
-    private lateinit var toolbar: MaterialToolbar
-    private lateinit var inputSearch: EditText
-    private lateinit var iconClear: ImageView
-    private lateinit var textError: TextView
-    private lateinit var imageError: ImageView
+    private lateinit var tbSearch: MaterialToolbar
+    private lateinit var etSearch: EditText
+    private lateinit var ivClearSearch: ImageView
+    private lateinit var ivError: ImageView
+    private lateinit var tvError: TextView
     private lateinit var btnRefresh: Button
 
     private var searchText: String = TEXT_DEF
@@ -59,26 +58,26 @@ class SearchActivity : AppCompatActivity() {
         adapter = TracksAdapter(tracks)
         recyclerView.adapter = adapter
 
-        toolbar = findViewById(R.id.toolbar)
-        inputSearch = findViewById(R.id.inputSearch)
-        iconClear = findViewById(R.id.iconClear)
-        textError = findViewById(R.id.textError)
-        imageError = findViewById(R.id.imageError)
+        tbSearch = findViewById(R.id.tbSearch)
+        etSearch = findViewById(R.id.etSearch)
+        ivClearSearch = findViewById(R.id.ivClearSearch)
+        ivError = findViewById(R.id.ivError)
+        tvError = findViewById(R.id.tvError)
         btnRefresh = findViewById(R.id.btnRefresh)
 
-        toolbar.setNavigationOnClickListener {
+        tbSearch.setNavigationOnClickListener {
             finish()
         }
 
-        inputSearch.setOnEditorActionListener { _, actionId, _ ->
+        etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 search()
             }
             false
         }
 
-        iconClear.setOnClickListener {
-            inputSearch.setText("")
+        ivClearSearch.setOnClickListener {
+            etSearch.setText("")
             if (tracks.isNotEmpty()) {
                 tracks.clear()
                 adapter.notifyDataSetChanged()
@@ -88,7 +87,7 @@ class SearchActivity : AppCompatActivity() {
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(
-                inputSearch.windowToken,
+                etSearch.windowToken,
                 0
             )
         }
@@ -112,7 +111,7 @@ class SearchActivity : AppCompatActivity() {
                 before: Int,
                 count: Int,
             ) {
-                iconClear.isVisible = !s.isNullOrEmpty()
+                ivClearSearch.isVisible = !s.isNullOrEmpty()
                 searchText = s.toString()
             }
 
@@ -121,7 +120,7 @@ class SearchActivity : AppCompatActivity() {
             ) {
             }
         }
-        inputSearch.addTextChangedListener(searchWatcher)
+        etSearch.addTextChangedListener(searchWatcher)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -136,7 +135,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun search() {
         iTunesService
-            .search(inputSearch.text.toString())
+            .search(etSearch.text.toString())
             .enqueue(
                 (object : Callback<TracksResponse> {
                     override fun onResponse(
@@ -176,23 +175,23 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showError(errorType: ErrorType) {
-        imageError.visibility = View.VISIBLE
-        textError.visibility = View.VISIBLE
+        ivError.visibility = View.VISIBLE
+        tvError.visibility = View.VISIBLE
 
         if (errorType == ErrorType.NOTHING_FOUND) {
-            imageError.setImageResource(R.drawable.nothing_found)
-            textError.text = getString(R.string.nothing_found)
+            ivError.setImageResource(R.drawable.nothing_found)
+            tvError.text = getString(R.string.nothing_found)
             btnRefresh.visibility = View.GONE
         } else if (errorType == ErrorType.NO_CONNECTION) {
-            imageError.setImageResource(R.drawable.no_connection)
-            textError.text = getString(R.string.no_connection)
+            ivError.setImageResource(R.drawable.no_connection)
+            tvError.text = getString(R.string.no_connection)
             btnRefresh.visibility = View.VISIBLE
         }
     }
 
     private fun clearError() {
-        imageError.visibility = View.GONE
-        textError.visibility = View.GONE
+        ivError.visibility = View.GONE
+        tvError.visibility = View.GONE
         btnRefresh.visibility = View.GONE
     }
 

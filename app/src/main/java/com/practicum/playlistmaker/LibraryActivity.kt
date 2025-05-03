@@ -9,8 +9,8 @@ class LibraryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
 
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        toolbar.setNavigationOnClickListener {
+        val tbLibrary = findViewById<MaterialToolbar>(R.id.tbLibrary)
+        tbLibrary.setNavigationOnClickListener {
             finish()
         }
     }
