@@ -16,7 +16,7 @@
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         style="@style/SettingsItemStyle.SwitchMaterial"
-        android:id="@+id/swDarkTheme"
+        android:id="@+id/swTheme"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_61"
         android:text="@string/dark_theme" />

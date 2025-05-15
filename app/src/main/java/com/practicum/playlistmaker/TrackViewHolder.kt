@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val tvTrackName: TextView = itemView.findViewById(R.id.tvTrackName)
     private val tvArtistName: TextView = itemView.findViewById(R.id.tvArtistName)
