@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
-import com.practicum.adapter_lesson_3.TracksAdapter
+import com.practicum.adapter_lesson_3.TrackAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,13 +35,13 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var tbSearch: MaterialToolbar
     private lateinit var etSearch: EditText
     private lateinit var ivClearSearch: ImageView
-    private lateinit var trackAdapter: TracksAdapter
+    private lateinit var trackAdapter: TrackAdapter
     private lateinit var ivError: ImageView
     private lateinit var tvError: TextView
     private lateinit var btnRefresh: Button
     private lateinit var searchHistory: SearchHistory
     private lateinit var llHistory: LinearLayout
-    private lateinit var historyAdapter: TracksAdapter
+    private lateinit var historyAdapter: TrackAdapter
     private lateinit var btnClearHistory: Button
 
     private val retrofit = Retrofit.Builder()
@@ -69,11 +69,11 @@ class SearchActivity : AppCompatActivity() {
         searchHistory = SearchHistory((applicationContext as App).sharedPrefs)
 
         val rwTracks = findViewById<RecyclerView>(R.id.rwTracks)
-        trackAdapter = TracksAdapter(tracks, searchHistory)
+        trackAdapter = TrackAdapter(tracks, searchHistory)
         rwTracks.adapter = trackAdapter
 
         val rwHistory = findViewById<RecyclerView>(R.id.rwHistory)
-        historyAdapter = TracksAdapter(searchHistory.tracksHistory, searchHistory)
+        historyAdapter = TrackAdapter(searchHistory.tracksHistory, searchHistory)
         rwHistory.adapter = historyAdapter
 
         tbSearch.setNavigationOnClickListener {
@@ -164,10 +164,10 @@ class SearchActivity : AppCompatActivity() {
         iTunesService
             .search(etSearch.text.toString())
             .enqueue(
-                (object : Callback<TracksResponse> {
+                (object : Callback<TrackResponse> {
                     override fun onResponse(
-                        call: Call<TracksResponse>,
-                        response: Response<TracksResponse>
+                        call: Call<TrackResponse>,
+                        response: Response<TrackResponse>
                     ) {
                         if (tracks.isNotEmpty()) {
                             tracks.clear()
@@ -189,7 +189,7 @@ class SearchActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(p0: Call<TracksResponse>, p1: Throwable) {
+                    override fun onFailure(p0: Call<TrackResponse>, p1: Throwable) {
                         if (tracks.isNotEmpty()) {
                             tracks.clear()
                             trackAdapter.notifyDataSetChanged()
