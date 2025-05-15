@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 
 class SettingsActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         val tbSettings = findViewById<MaterialToolbar>(R.id.tbSettings)
+        val swTheme = findViewById<SwitchMaterial>(R.id.swTheme)
         val tvShareApp = findViewById<MaterialTextView>(R.id.tvShareApp)
         val tvWriteToSupport =
             findViewById<MaterialTextView>(R.id.tvWriteToSupport)
@@ -20,6 +22,15 @@ class SettingsActivity : AppCompatActivity() {
 
         tbSettings.setNavigationOnClickListener {
             finish()
+        }
+
+        swTheme.isChecked = (applicationContext as App).isDarkTheme
+        swTheme.setOnCheckedChangeListener { switcher, checked ->
+            (applicationContext as App).setTheme(checked)
+        }
+
+        swTheme.setOnCheckedChangeListener { switcher, checked ->
+            (applicationContext as App).setTheme(checked)
         }
 
         tvShareApp.setOnClickListener {

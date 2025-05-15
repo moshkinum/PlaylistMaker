@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -22,11 +23,26 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val SEARCH_TEXT = "SEARCH_TEXT"
+const val TEXT_DEF = ""
+
 enum class ErrorType {
     NOTHING_FOUND, NO_CONNECTION
 }
 
 class SearchActivity : AppCompatActivity() {
+
+    private lateinit var tbSearch: MaterialToolbar
+    private lateinit var etSearch: EditText
+    private lateinit var ivClearSearch: ImageView
+    private lateinit var trackAdapter: TracksAdapter
+    private lateinit var ivError: ImageView
+    private lateinit var tvError: TextView
+    private lateinit var btnRefresh: Button
+    private lateinit var searchHistory: SearchHistory
+    private lateinit var llHistory: LinearLayout
+    private lateinit var historyAdapter: TracksAdapter
+    private lateinit var btnClearHistory: Button
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(ITUNES_BASE_URL)
@@ -35,28 +51,11 @@ class SearchActivity : AppCompatActivity() {
     private val iTunesService = retrofit.create(ITunesApi::class.java)
     private val tracks = mutableListOf<Track>()
 
-    private lateinit var adapter: TracksAdapter
-    private lateinit var tbSearch: MaterialToolbar
-    private lateinit var etSearch: EditText
-    private lateinit var ivClearSearch: ImageView
-    private lateinit var ivError: ImageView
-    private lateinit var tvError: TextView
-    private lateinit var btnRefresh: Button
-
     private var searchText: String = TEXT_DEF
-
-    companion object {
-        const val SEARCH_TEXT = "SEARCH_TEXT"
-        const val TEXT_DEF = ""
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        adapter = TracksAdapter(tracks)
-        recyclerView.adapter = adapter
 
         tbSearch = findViewById(R.id.tbSearch)
         etSearch = findViewById(R.id.etSearch)
@@ -64,6 +63,18 @@ class SearchActivity : AppCompatActivity() {
         ivError = findViewById(R.id.ivError)
         tvError = findViewById(R.id.tvError)
         btnRefresh = findViewById(R.id.btnRefresh)
+        llHistory = findViewById<LinearLayout>(R.id.llHistory)
+        btnClearHistory = findViewById<Button>(R.id.btnClearHistory)
+
+        searchHistory = SearchHistory((applicationContext as App).sharedPrefs)
+
+        val rwTracks = findViewById<RecyclerView>(R.id.rwTracks)
+        trackAdapter = TracksAdapter(tracks, searchHistory)
+        rwTracks.adapter = trackAdapter
+
+        val rwHistory = findViewById<RecyclerView>(R.id.rwHistory)
+        historyAdapter = TracksAdapter(searchHistory.tracksHistory, searchHistory)
+        rwHistory.adapter = historyAdapter
 
         tbSearch.setNavigationOnClickListener {
             finish()
@@ -76,11 +87,21 @@ class SearchActivity : AppCompatActivity() {
             false
         }
 
+        etSearch.setOnFocusChangeListener { _, hasFocus ->
+            llHistory.isVisible = false
+
+            if (hasFocus and etSearch.text.isEmpty()) {
+                searchHistory.read()
+                historyAdapter.notifyDataSetChanged()
+                llHistory.isVisible = searchHistory.tracksHistory.isNotEmpty()
+            }
+        }
+
         ivClearSearch.setOnClickListener {
             etSearch.setText("")
             if (tracks.isNotEmpty()) {
                 tracks.clear()
-                adapter.notifyDataSetChanged()
+                trackAdapter.notifyDataSetChanged()
             }
             clearError()
 
@@ -112,6 +133,7 @@ class SearchActivity : AppCompatActivity() {
                 count: Int,
             ) {
                 ivClearSearch.isVisible = !s.isNullOrEmpty()
+                llHistory.isVisible = etSearch.hasFocus() and s.isNullOrEmpty()
                 searchText = s.toString()
             }
 
@@ -121,6 +143,11 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         etSearch.addTextChangedListener(searchWatcher)
+
+        btnClearHistory.setOnClickListener {
+            searchHistory.clear()
+            llHistory.visibility = View.GONE
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -144,14 +171,14 @@ class SearchActivity : AppCompatActivity() {
                     ) {
                         if (tracks.isNotEmpty()) {
                             tracks.clear()
-                            adapter.notifyDataSetChanged()
+                            trackAdapter.notifyDataSetChanged()
                         }
                         clearError()
 
                         if (response.code() == 200) {
                             if (response.body()?.results?.isNotEmpty() == true) {
                                 tracks.addAll(response.body()?.results!!)
-                                adapter.notifyDataSetChanged()
+                                trackAdapter.notifyDataSetChanged()
                             }
 
                             if (tracks.isEmpty()) {
@@ -165,7 +192,7 @@ class SearchActivity : AppCompatActivity() {
                     override fun onFailure(p0: Call<TracksResponse>, p1: Throwable) {
                         if (tracks.isNotEmpty()) {
                             tracks.clear()
-                            adapter.notifyDataSetChanged()
+                            trackAdapter.notifyDataSetChanged()
                         }
                         showError(ErrorType.NO_CONNECTION)
                     }

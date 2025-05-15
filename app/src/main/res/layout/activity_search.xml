@@ -51,17 +51,18 @@
         android:visibility="gone" />
 
     <TextView
-        style="@style/TextErrorStyle"
+        style="@style/CaptionStyle"
         android:id="@+id/tvError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginHorizontal="@dimen/margin_24"
         android:layout_marginTop="@dimen/margin_16"
         tools:text="@string/no_connection"
         android:visibility="gone" />
 
     <Button
-        style="@style/ButtonRefreshStyle"
+        style="@style/ButtonSmallStyle"
         android:layout_width="@dimen/width_91"
         android:layout_height="@dimen/height_36"
         android:layout_gravity="center"
@@ -70,12 +71,53 @@
         android:text="@string/refresh"
         android:visibility="gone" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/llHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CaptionStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_22"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_50"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:text="@string/you_looked_for" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rwHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <Button
+                style="@style/ButtonSmallStyle"
+                android:id="@+id/btnClearHistory"
+                android:layout_width="@dimen/width_148"
+                android:layout_height="@dimen/height_36"
+                android:layout_marginTop="@dimen/margin_24"
+                android:text="@string/clear_history" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rwTracks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_24"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
 
 </LinearLayout>
