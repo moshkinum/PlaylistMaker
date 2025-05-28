@@ -1,10 +1,10 @@
 package com.practicum.playlistmaker
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.gson.Gson
 import com.practicum.adapter_lesson_3.TrackAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +25,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val SEARCH_TEXT = "SEARCH_TEXT"
-const val TEXT_DEF = ""
+const val DEF_TEXT = ""
+const val CLICKED_TRACK = "CLICKED_TRACK"
 
 enum class ErrorType {
     NOTHING_FOUND, NO_CONNECTION
@@ -51,7 +53,7 @@ class SearchActivity : AppCompatActivity() {
     private val iTunesService = retrofit.create(ITunesApi::class.java)
     private val tracks = mutableListOf<Track>()
 
-    private var searchText: String = TEXT_DEF
+    private var searchText: String = DEF_TEXT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +71,11 @@ class SearchActivity : AppCompatActivity() {
         searchHistory = SearchHistory((applicationContext as App).sharedPrefs)
 
         val rwTracks = findViewById<RecyclerView>(R.id.rwTracks)
-        trackAdapter = TrackAdapter(tracks, searchHistory)
+        trackAdapter = TrackAdapter(tracks, onTrackClickListener)
         rwTracks.adapter = trackAdapter
 
         val rwHistory = findViewById<RecyclerView>(R.id.rwHistory)
-        historyAdapter = TrackAdapter(searchHistory.tracksHistory, searchHistory)
+        historyAdapter = TrackAdapter(searchHistory.tracksHistory, onTrackClickListener)
         rwHistory.adapter = historyAdapter
 
         tbSearch.setNavigationOnClickListener {
@@ -146,7 +148,15 @@ class SearchActivity : AppCompatActivity() {
 
         btnClearHistory.setOnClickListener {
             searchHistory.clear()
-            llHistory.visibility = View.GONE
+            llHistory.isVisible = false
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (llHistory.isVisible || etSearch.text.isNotEmpty()) {
+            searchHistory.read()
+            historyAdapter.notifyDataSetChanged()
         }
     }
 
@@ -157,7 +167,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        searchText = savedInstanceState.getString(SEARCH_TEXT, TEXT_DEF)
+        searchText = savedInstanceState.getString(SEARCH_TEXT, DEF_TEXT)
     }
 
     private fun search() {
@@ -202,24 +212,31 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showError(errorType: ErrorType) {
-        ivError.visibility = View.VISIBLE
-        tvError.visibility = View.VISIBLE
+        ivError.isVisible = true
+        tvError.isVisible = true
 
         if (errorType == ErrorType.NOTHING_FOUND) {
             ivError.setImageResource(R.drawable.nothing_found)
             tvError.text = getString(R.string.nothing_found)
-            btnRefresh.visibility = View.GONE
+            btnRefresh.isVisible = false
         } else if (errorType == ErrorType.NO_CONNECTION) {
             ivError.setImageResource(R.drawable.no_connection)
             tvError.text = getString(R.string.no_connection)
-            btnRefresh.visibility = View.VISIBLE
+            btnRefresh.isVisible = true
         }
     }
 
     private fun clearError() {
-        ivError.visibility = View.GONE
-        tvError.visibility = View.GONE
-        btnRefresh.visibility = View.GONE
+        ivError.isVisible = false
+        tvError.isVisible = false
+        btnRefresh.isVisible = false
+    }
+
+    private val onTrackClickListener: (Track) -> Unit = { track ->
+        searchHistory.write(track)
+        val intent = Intent(this, PlayerActivity::class.java)
+        intent.putExtra(CLICKED_TRACK, Gson().toJson(track))
+        startActivity(intent)
     }
 
 }
