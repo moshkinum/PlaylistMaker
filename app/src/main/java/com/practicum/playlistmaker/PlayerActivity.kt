@@ -48,11 +48,9 @@ class PlayerActivity : AppCompatActivity() {
         val cornerRadius = 8f
         Glide.with(applicationContext)
             .load(Functions.getCoverArtwork(track.artworkUrl100))
-            .centerCrop()
             .transform(RoundedCorners(Functions.dpToPx(cornerRadius, applicationContext)))
             .placeholder(R.drawable.placeholder)
             .into(ivCover)
-
 
         ivArrowBack.setOnClickListener {
             finish()
