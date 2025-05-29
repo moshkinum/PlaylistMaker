@@ -14,6 +14,9 @@ class PlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
 
+        val json = intent.getStringExtra(CLICKED_TRACK)
+        val track = Gson().fromJson(json, Track::class.java)
+
         val ivArrowBack = findViewById<ImageView>(R.id.ivArrowBack)
         val ivCover: ImageView = findViewById<ImageView>(R.id.ivCover)
         val tvTrackName = findViewById<TextView>(R.id.tvTrackName)
@@ -22,12 +25,12 @@ class PlayerActivity : AppCompatActivity() {
         val tvDuration = findViewById<TextView>(R.id.tvDuration)
         val tvAlbumTitle = findViewById<TextView>(R.id.tvAlbumTitle)
         val tvAlbum = findViewById<TextView>(R.id.tvAlbum)
+        val tvYearTitle = findViewById<TextView>(R.id.tvYearTitle)
         val tvYear = findViewById<TextView>(R.id.tvYear)
+        val tvGenreTitle = findViewById<TextView>(R.id.tvGenreTitle)
         val tvGenre = findViewById<TextView>(R.id.tvGenre)
+        val tvCountryTitle = findViewById<TextView>(R.id.tvCountryTitle)
         val tvCountry = findViewById<TextView>(R.id.tvCountry)
-
-        val json = intent.getStringExtra(CLICKED_TRACK)
-        val track = Gson().fromJson(json, Track::class.java)
 
         tvTrackName.text = track.trackName
         tvArtistName.text = track.artistName
@@ -41,9 +44,26 @@ class PlayerActivity : AppCompatActivity() {
             tvAlbum.text = track.collectionName
         }
 
-        tvYear.text = track.releaseDate.substring(0, 4)
-        tvGenre.text = track.primaryGenreName
-        tvCountry.text = track.country
+        if (track.releaseDate.isNullOrEmpty()) {
+            tvYearTitle.isVisible = false
+            tvYear.isVisible = false
+        } else {
+            tvYear.text = track.releaseDate.substring(0, 4)
+        }
+
+        if (track.primaryGenreName.isNullOrEmpty()) {
+            tvGenreTitle.isVisible = false
+            tvGenre.isVisible = false
+        } else {
+            tvGenre.text = track.primaryGenreName
+        }
+
+        if (track.country.isNullOrEmpty()) {
+            tvCountryTitle.isVisible = false
+            tvCountry.isVisible = false
+        } else {
+            tvCountry.text = track.country
+        }
 
         val cornerRadius = 8f
         Glide.with(applicationContext)
