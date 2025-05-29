@@ -23,8 +23,20 @@
         <item name="android:textFontWeight">400</item>
     </style>
 
+    <style name="YsDisplayRegular.22">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
     <style name="YsDisplayRegular.16">
         <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="YsDisplayRegular.14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="YsDisplayRegular.13">
+        <item name="android:textSize">@dimen/text_size_13</item>
     </style>
 
     <style name="YsDisplayRegular.11">
@@ -105,22 +117,44 @@
         <item name="tint">?attr/colorSecondaryVariant</item>
     </style>
 
-    <style name="RoundImageViewStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">2dp</item>>
-    </style>
-
-    <style name="TrackNameStyle">
+    <style name="TitleStyle">
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textAppearance">@style/YsDisplayRegular.16</item>
-        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
-    <style name="ArtistNameStyle">
+    <style name="TitleStyle.Medium22">
+        <item name="android:textAppearance">@style/YsDisplayMedium.22</item>
+    </style>
+
+    <style name="TitleStyle.Medium14">
+        <item name="android:textAppearance">@style/YsDisplayMedium.14</item>
+    </style>
+
+    <style name="TitleStyle.Regular16">
+        <item name="android:textAppearance">@style/YsDisplayRegular.16</item>
+    </style>
+
+    <style name="AttributeTitleStyle">
+        <item name="android:textAppearance">@style/YsDisplayRegular.13</item>
+        <item name="android:textColor">@color/grey_500</item>
+    </style>
+
+    <style name="AttributeValueStyle">
+        <item name="android:gravity">end</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">@style/YsDisplayRegular.13</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="SubtitleStyle">
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
         <item name="android:textAppearance">@style/YsDisplayRegular.11</item>
         <item name="android:textColor">?attr/colorOnSecondaryFixed</item>
     </style>
+
 
     <style name="CaptionStyle">
         <item name="android:textAppearance">@style/YsDisplayMedium.19</item>
